@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 export default function Journal() {
   const [blogs, setBlogs] = useState([]);
 
@@ -27,6 +28,25 @@ export default function Journal() {
 
   return (
     <div className="container mt-4">
+    <div>
+    <Carousel>
+                <div> 
+                    {/* <img src="assets/1.jpeg" /> */}
+                    {/* <p className="legend">Legend 1</p> */}
+                    <h1>this is first</h1>
+                </div>
+                <div>
+                    {/* <img src="assets/2.jpeg" /> */}
+                    {/* <p className="legend">Legend 2</p> */}
+                    <h1>this is first</h1>
+                </div>
+                <div>
+                    {/* <img src="assets/3.jpeg" /> */}
+                    {/* <p className="legend">Legend 3
+                    </p> */}
+                </div>
+            </Carousel>
+    </div>
       <div className="row">
         {blogs.length > 0 ? (
           blogs.map((blog, index) => (
