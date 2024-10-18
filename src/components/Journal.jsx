@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import '../style/Carousel.css';
+import random1 from "../assets/random1.jpeg"
 export default function Journal() {
   const [blogs, setBlogs] = useState([]);
 
@@ -30,21 +32,36 @@ export default function Journal() {
     <div className="container mt-4">
     <div>
     <Carousel>
-                <div> 
-                    {/* <img src="assets/1.jpeg" /> */}
-                    {/* <p className="legend">Legend 1</p> */}
-                    <h1>this is first</h1>
-                </div>
-                <div>
-                    {/* <img src="assets/2.jpeg" /> */}
-                    {/* <p className="legend">Legend 2</p> */}
-                    <h1>this is first</h1>
-                </div>
-                <div>
-                    {/* <img src="assets/3.jpeg" /> */}
-                    {/* <p className="legend">Legend 3
-                    </p> */}
-                </div>
+    
+     
+        <div className="carousel-item">
+          <div className="carousel-image">
+            <img src={random1} alt="Slide 1" />
+          </div>
+          <div className="carousel-content">
+            <h2>Slide 1 Title</h2>
+            <p>This is a paragraph for Slide 1. Add any description you like here.</p>
+          </div>
+        </div>
+        <div className="carousel-item">
+          <div className="carousel-image">
+            <img src="random1.jpeg" alt="Slide 2" />
+          </div>
+          <div className="carousel-content">
+            <h2>Slide 2 Title</h2>
+            <p>This is a paragraph for Slide 2. Add any description you like here.</p>
+          </div>
+        </div>
+        <div className="carousel-item">
+          <div className="carousel-image">
+            <img src="your-image-url-3.jpg" alt="Slide 3" />
+          </div>
+          <div className="carousel-content">
+            <h2>Slide 3 Title</h2>
+            <p>This is a paragraph for Slide 3. Add any description you like here.</p>
+          </div>
+        </div>
+      
             </Carousel>
     </div>
       <div className="row">
