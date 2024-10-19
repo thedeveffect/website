@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Typography, Container, Link, IconButton } from "@mui/material";
+import { Box, Typography, Container, IconButton } from "@mui/material";
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
 import Grid from '@mui/material/Grid'
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
         backgroundColor: "#00334e", // Primary color (adjust as needed)
         color: "white",
         py: 6,
-        mt: 8,
+        mt: 0,
       }}
     >
       <Container maxWidth="lg">
@@ -20,14 +21,14 @@ export default function Footer() {
             <Typography variant="h6" gutterBottom>
               Quick Links
             </Typography>
-            <Box>
-              <Link href="/journal" color="inherit" sx={{ display: "block", mb: 1 }}>
+            <Box display='flex' flexDirection='column'>
+              <Link to="/journal" color="inherit" sx={{ display: "block", mb: 1 }}>
                 Journal
               </Link>
-              <Link href="/about" color="inherit" sx={{ display: "block", mb: 1 }}>
+              <Link to="/about" color="inherit" sx={{ display: "block", mb: 1 }}>
                 About Us
               </Link>
-              <Link href="/contact" color="inherit" sx={{ display: "block", mb: 1 }}>
+              <Link to="/contact" color="inherit" sx={{ display: "block", mb: 1 }}>
                 Contact
               </Link>
             </Box>

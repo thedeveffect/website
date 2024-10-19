@@ -185,3 +185,13 @@ p {
   color: #ddd; /* Lighter color on hover */
 }
 
+
+.home-container{
+  width: 100%;
+  background-image: url('./assets/blog_home.jpeg'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  height: 500px;
+  margin-top: 55px;
+}
