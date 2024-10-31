@@ -1,9 +1,9 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import girl from "../assets/girl.jpeg";
+import girl from "../../assets/girl.jpeg";
 export default function About() {
   return (
     <Box className="about-container" py={4}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import "../App.css";
-import sofa from "../assets/sofa.jpeg";
+import "../../App.css";
+import sofa from "../../assets/sofa.jpeg";
 
 export default function Contact() {
   const [formData, setFormData] = useState({

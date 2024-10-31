@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
-import "../style/Carousel.css";
-import random1 from "../assets/random1.jpeg";
+import "../../App.css";
+import random1 from "../../assets/random1.jpeg";
 
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -57,6 +56,22 @@ export default function Journal() {
             <Grid item xs={12} md={4} key={index}>
               <Card>
                 <CardContent>
+                  <Grid container>
+<Grid item>
+<img src={random1} alt="" />
+</Grid>
+<Grid item>
+<Typography variant="h5" component="div">
+                    {blog.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    {blog.category}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {blog.description}
+                  </Typography>
+</Grid>
+                  </Grid>
                   <Typography variant="h5" component="div">
                     {blog.title}
                   </Typography>
