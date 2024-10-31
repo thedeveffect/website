@@ -1,86 +1,99 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-import '../style/Carousel.css';
-import random1 from "../assets/random1.jpeg"
+import "../style/Carousel.css";
+import random1 from "../assets/random1.jpeg";
+
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Carousel from "react-material-ui-carousel";
+import { Paper, Button } from "@mui/material";
+
 export default function Journal() {
   const [blogs, setBlogs] = useState([]);
 
-  // Dynamically import all JSON files from the 'data' folder
+  // Dynamically import all JSON files from the 'blog-data' folder
   const importAll = (r) => {
     return r.keys().map(r);
   };
 
+  const items = [
+    {
+      name: "Random Name #1",
+      description: "Probably the most random thing you have ever seen!",
+    },
+    {
+      name: "Random Name #2",
+      description: "Hello World!",
+    },
+  ];
+
   useEffect(() => {
     const loadBlogs = () => {
-      const jsonFiles = importAll(require.context('../blog-data', false, /\.json$/));
-
-      const allBlogs = jsonFiles
-        .flat()
-        .filter(blog => blog && blog.title);  // Ensure valid blogs with titles
-
-      setBlogs(allBlogs);
+      try {
+        const jsonFiles = importAll(
+          require.context("../blog-data", false, /\.json$/)
+        );
+        const allBlogs = jsonFiles.flatMap((data) => data.default || data);
+        setBlogs(allBlogs.filter((blog) => blog && blog.title)); // Ensure valid blogs with titles
+      } catch (error) {
+        console.error("Error loading blogs:", error);
+      }
     };
-
     loadBlogs();
   }, []);
 
-
-
   return (
-    <div className="container mt-4">
-    <div>
-    <Carousel>
-    
-     
-        <div className="carousel-item">
-          <div className="carousel-image">
-            <img src={random1} alt="Slide 1" />
-          </div>
-          <div className="carousel-content">
-            <h2>Slide 1 Title</h2>
-            <p>This is a paragraph for Slide 1. Add any description you like here.</p>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="carousel-image">
-            <img src="random1.jpeg" alt="Slide 2" />
-          </div>
-          <div className="carousel-content">
-            <h2>Slide 2 Title</h2>
-            <p>This is a paragraph for Slide 2. Add any description you like here.</p>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="carousel-image">
-            <img src="your-image-url-3.jpg" alt="Slide 3" />
-          </div>
-          <div className="carousel-content">
-            <h2>Slide 3 Title</h2>
-            <p>This is a paragraph for Slide 3. Add any description you like here.</p>
-          </div>
-        </div>
-      
-            </Carousel>
-    </div>
-      <div className="row">
+    <>
+      <Carousel>
+        {items.map((item, i) => (
+          <Item key={i} item={item} />
+        ))}
+      </Carousel>
+      <Grid container spacing={4} sx={{ mt: 4 }}>
         {blogs.length > 0 ? (
           blogs.map((blog, index) => (
-            <div className="col-md-4 mb-4" key={index}>
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{blog.title}</h5>
-                  <h6 className="card-subtitle mb-2 text-muted">{blog.category}</h6>
-                  <p className="card-text">{blog.description}</p>
-                </div>
-              </div>
-            </div>
+            <Grid item xs={12} md={4} key={index}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    {blog.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    {blog.category}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {blog.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
           ))
         ) : (
-          <p>No blogs available.</p>
+          <Grid item xs={12}>
+            <Typography variant="body1" textAlign="center">
+              No blogs available.
+            </Typography>
+          </Grid>
         )}
-      </div>
-    </div>
+      </Grid>
+    </>
   );
+
+  function Item(props) {
+    return (
+      <Paper sx={{ p: 4, textAlign: "center" }}>
+        <Typography variant="h4" component="h2">
+          {props.item.name}
+        </Typography>
+        <Typography variant="body1" sx={{ mt: 2 }}>
+          {props.item.description}
+        </Typography>
+        <Button variant="contained" color="primary" sx={{ mt: 3 }}>
+          Check it out!
+        </Button>
+      </Paper>
+    );
+  }
 }

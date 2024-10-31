@@ -1,7 +1,6 @@
 // src/Form.js
 import React, { useState } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Form() {
   const [blog, setBlog] = useState({

@@ -60,7 +60,7 @@ function Navbar(props) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar sx={{backgroundColor:'#00334e'}}>
+        <Toolbar sx={{ backgroundColor: '#00334e' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -90,7 +90,7 @@ function Navbar(props) {
           </Box>
         </Toolbar>
       </AppBar>
-      <nav>
+      <Box component="nav">
         <Drawer
           container={container}
           variant="temporary"
@@ -109,7 +109,13 @@ function Navbar(props) {
         >
           {drawer}
         </Drawer>
-      </nav>
+      </Box>
+      {/* Spacer to push the content below the AppBar */}
+      <Toolbar />
+      {/* Main content */}
+      <Box component="main" sx={{ p: 3 }}>
+        {/* Your main content goes here */}
+      </Box>
     </Box>
   );
 }
