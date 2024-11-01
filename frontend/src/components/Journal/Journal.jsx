@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
 import random1 from "../../assets/random1.jpeg";
+import TextField from "@mui/material/TextField";
 
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -8,53 +9,31 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Button } from "@mui/material";
+import axios from "axios";
 
 export default function Journal() {
   const [blogs, setBlogs] = useState([]);
 
-  // Dynamically import all JSON files from the 'blog-data' folder
-  const importAll = (r) => {
-    return r.keys().map(r);
-  };
-
-  const items = [
-    {
-      name: "Random Name #1",
-      description: "Probably the most random thing you have ever seen!",
-    },
-    {
-      name: "Random Name #2",
-      description: "Hello World!",
-    },
-  ];
-
   useEffect(() => {
-    const loadBlogs = () => {
+    const fetchBlogs = async () => {
       try {
-        const jsonFiles = importAll(
-          require.context("../../blog-data", false, /\.json$/)
-        );
-        const allBlogs = jsonFiles.flatMap((data) => data.default || data);
-        setBlogs(allBlogs.filter((blog) => blog && blog.title)); // Ensure valid blogs with titles
-      } catch (error) {
-        console.error("Error loading blogs:", error);
+        const res = await axios.get("http://localhost:5000/blogs");
+        setBlogs(res.data); // Set the fetched blogs to state
+      } catch (err) {
+        console.error("Error fetching blogs:", err);
       }
     };
-    loadBlogs();
-  }, []);
+
+    fetchBlogs(); // Call the fetch function
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
     <>
-      <Carousel>
-        {items.map((item, i) => (
-          <Item key={i} item={item} />
-        ))}
-      </Carousel>
       <Grid container spacing={4} sx={{ mt: 4 }}>
         {blogs.length > 0 ? (
-          blogs.map((blog, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Card>
+          blogs.map((blog) => (
+            <Grid item xs={12} md={4}>
+              <Card key={blogs._id}>
                 <CardContent>
                   <Typography variant="h5" component="div">
                     {blog.title}
@@ -63,10 +42,11 @@ export default function Journal() {
                     {blog.category}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {blog.description}
+                    {blog.content}
                   </Typography>
                 </CardContent>
               </Card>
+              
             </Grid>
           ))
         ) : (
@@ -76,30 +56,13 @@ export default function Journal() {
             </Typography>
           </Grid>
         )}
-      </Grid>
+      </Grid><TextField
+                id="outlined-multiline-static"
+                label="Multiline"
+                multiline
+                rows={4}
+                defaultValue="Default Value"
+              />
     </>
   );
-
-  function Item(props) {
-    return (
-      <Paper sx={{ p: 4, textAlign: "center" }}>
-        <Grid container direction="flex" justifyContent="center">
-          <Grid item>
-            <img src={random1} alt="img" />
-          </Grid>
-          <Grid item>
-            <Typography variant="h4" component="h2">
-              {props.item.name}
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 2 }}>
-              {props.item.description}
-            </Typography>
-            <Button variant="contained" color="primary" sx={{ mt: 3 }}>
-              Check it out!
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
-    );
-  }
 }
