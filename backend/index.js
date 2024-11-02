@@ -36,6 +36,34 @@ app.post('/form', async (req, res) => {
     }
 });
 
+app.put("/blogs/:id", async (req, res) => {
+    const { id } = req.params;
+    const updateData = req.body;
+    
+    try {
+      const updatedBlog = await BlogModel.findByIdAndUpdate(id, updateData, {
+        new: true,
+      });
+      if (!updatedBlog) return res.status(404).send("Blog not found");
+      res.status(200).send(updatedBlog);
+    } catch (err) {
+      res.status(500).send("Error updating blog");
+    }
+  });
+  
+
+app.delete("/blogs/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+      const result = await BlogModel.findByIdAndDelete(id);
+      if (!result) return res.status(404).send("Blog not found");
+      res.status(200).send("Blog deleted successfully");
+    } catch (err) {
+      res.status(500).send("Server error");
+    }
+  });
+  
+
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

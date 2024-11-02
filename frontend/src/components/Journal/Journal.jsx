@@ -6,8 +6,6 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Carousel from "react-material-ui-carousel";
-import { Paper, Button } from "@mui/material";
 import axios from "axios";
 
 export default function Journal() {

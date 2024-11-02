@@ -1,26 +1,34 @@
 // src/Form.js
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { TextField, Button, Container, Typography } from "@mui/material";
 
 export default function Form() {
-  const [title, setTitle] = useState(null);
-  const [category, setCategory] = useState(null);
-  const [content, setContent] = useState(null);
-
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
 
   const Submit = (e) => {
     e.preventDefault();
     const currentDate = new Date().toISOString();
-    axios.post('http://localhost:5000/form', {title, category, content, date: currentDate})
+
+    axios.post("http://localhost:5000/form", {
+      title,
+      category,
+      content,
+      date: currentDate,
+      description,
+    })
     .then(result => {
-      console.log(result)
+      console.log(result);
       setTitle('');
       setCategory('');
       setContent('');
+      setDescription('');
     })
-    .catch(err => console.log(err))
-  }
+    .catch(err => console.log(err));
+  };
 
   return (
     <Container maxWidth="sm">
@@ -32,7 +40,6 @@ export default function Form() {
           label="Title"
           variant="outlined"
           fullWidth
-          id="title"
           required
           sx={{ mb: 2 }}
           value={title}
@@ -42,24 +49,23 @@ export default function Form() {
           label="Category"
           variant="outlined"
           fullWidth
-          id="category"
           required
           sx={{ mb: 2 }}
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
         <TextField
-          label="Description"
+          label="Content"
           variant="outlined"
           fullWidth
           multiline
           rows={3}
-          id="description"
           required
           sx={{ mb: 2 }}
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
+        
 
         <Button type="submit" variant="contained" color="primary">
           Submit
