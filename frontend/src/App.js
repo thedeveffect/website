@@ -7,6 +7,7 @@ import About from "./components/About/About.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Form from './components/Form/Form.jsx'
+import EditBlogs from './components/EditBlogs/EditBlogs.jsx';
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/editblogs" element={<EditBlogs />} />
         </Routes>
       </div>
       <Footer/>

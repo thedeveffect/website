@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
 import random1 from "../../assets/random1.jpeg";
-import TextField from "@mui/material/TextField";
 
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -18,14 +17,14 @@ export default function Journal() {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get("http://localhost:5000/blogs");
-        setBlogs(res.data); // Set the fetched blogs to state
+        setBlogs(res.data); 
       } catch (err) {
         console.error("Error fetching blogs:", err);
       }
     };
 
-    fetchBlogs(); // Call the fetch function
-  }, []); // Empty dependency array ensures this runs only once on mount
+    fetchBlogs(); 
+  }, []); 
 
   return (
     <>
@@ -46,7 +45,6 @@ export default function Journal() {
                   </Typography>
                 </CardContent>
               </Card>
-              
             </Grid>
           ))
         ) : (
