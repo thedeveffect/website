@@ -11,7 +11,8 @@ export default function Form() {
 
   const Submit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/form', {title, category, content})
+    const currentDate = new Date().toISOString();
+    axios.post('http://localhost:5000/form', {title, category, content, date: currentDate})
     .then(result => {
       console.log(result)
       setTitle('');
