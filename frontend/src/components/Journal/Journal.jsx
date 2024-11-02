@@ -12,7 +12,7 @@ import { Paper, Button } from "@mui/material";
 import axios from "axios";
 
 export default function Journal() {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState([]); 
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -56,13 +56,7 @@ export default function Journal() {
             </Typography>
           </Grid>
         )}
-      </Grid><TextField
-                id="outlined-multiline-static"
-                label="Multiline"
-                multiline
-                rows={4}
-                defaultValue="Default Value"
-              />
+      </Grid>
     </>
   );
 }
