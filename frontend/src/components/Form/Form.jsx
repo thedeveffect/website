@@ -7,27 +7,25 @@ export default function Form() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [content, setContent] = useState("");
-  const [description, setDescription] = useState("");
 
   const Submit = (e) => {
     e.preventDefault();
     const currentDate = new Date().toISOString();
 
-    axios.post("http://localhost:5000/form", {
-      title,
-      category,
-      content,
-      date: currentDate,
-      description,
-    })
-    .then(result => {
-      console.log(result);
-      setTitle('');
-      setCategory('');
-      setContent('');
-      setDescription('');
-    })
-    .catch(err => console.log(err));
+    axios
+      .post("http://localhost:5000/form", {
+        title,
+        category,
+        content,
+        date: currentDate,
+      })
+      .then((result) => {
+        console.log(result);
+        setTitle("");
+        setCategory("");
+        setContent("");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -35,7 +33,10 @@ export default function Form() {
       <Typography variant="h4" component="h1" gutterBottom>
         Submit a Blog
       </Typography>
-      <form onSubmit={Submit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <form
+        onSubmit={Submit}
+        style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+      >
         <TextField
           label="Title"
           variant="outlined"
@@ -65,8 +66,14 @@ export default function Form() {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        
 
+        <TextField
+          variant="outlined"
+          type="file"
+          fullWidth
+          required
+          sx={{ mb: 2 }}
+        />
         <Button type="submit" variant="contained" color="primary">
           Submit
         </Button>

@@ -8,6 +8,7 @@ import Contact from "./components/Contact/Contact.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Form from './components/Form/Form.jsx'
 import EditBlogs from './components/EditBlogs/EditBlogs.jsx';
+import JournalDetails from './components/JournalDetails/JournalDetails.jsx'
 function App() {
   return (
     <Router>
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/journal" element={<Journal />} />
+          <Route path="/journal/:id" element={<JournalDetails />} /> {/* Detail page */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/form" element={<Form />} />
