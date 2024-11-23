@@ -16,7 +16,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
-    "jodit": "^4.2.43",
     "jodit-react": "^4.1.2",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
@@ -27,8 +26,6 @@
     "react-scripts": "5.0.1",
     "sass": "^1.80.5",
     "serve": "^14.2.3",
-    "slate": "^0.110.2",
-    "slate-react": "^0.111.0",
     "styled-components": "^6.1.13",
     "web-vitals": "^2.1.4"
   },
